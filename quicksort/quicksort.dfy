@@ -57,15 +57,7 @@ method Main(args: seq<string>) {
     i := i + 1;
   }
   print("\n");
-
-  QuickSort(arr, 0, arr.Length - 1);
-
-  print("Sorted array: ");
-  i := 0;
-  while i < arr.Length {
-    print(arr[i]);
-    print(" ");
-    i := i + 1;
-  }
+  print("Max(12, 22) = ");
+  print(Max(12, 22));
   print("\n");
 }

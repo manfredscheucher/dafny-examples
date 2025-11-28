@@ -9,7 +9,7 @@ DAFNY_BIN := $(SCRIPT_DIR)/../Binaries/dafny
 # If Binaries/dafny doesn't exist, use dotnet run
 DAFNY_CMD := $(if $(shell [ -f "$(DAFNY_BIN)" ] && echo "exists"),$(DAFNY_BIN),dotnet run --project $(SCRIPT_DIR)/../Source/Dafny/Dafny.csproj --)
 
-EXAMPLES := hello abs maximum factorial fibonacci quicksort
+EXAMPLES := hello abs maximum factorial fibonacci quicksort bubblesort
 
 help:
 	@echo "Dafny Examples Makefile"
@@ -66,7 +66,7 @@ build-%:
 run-%:
 	@example=$*; \
 	if [ -d "$$example" ]; then \
-		kotlin_dir=$$(find $$example -maxdepth 2 -type d -name "*-kt*" | head -1); \
+		kotlin_dir=$$(find $$example -maxdepth 2 -type d \( -name "*-kt*" -o -name "*-kotlin" \) | head -1); \
 		if [ -z "$$kotlin_dir" ]; then \
 			echo "ERROR: Could not find generated Kotlin directory for $$example"; \
 			exit 1; \
