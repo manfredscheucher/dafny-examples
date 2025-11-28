@@ -1,36 +1,41 @@
+function Fib(n: int): int
+  requires n >= 0
+  decreases n
+{
+  if n <= 1 then n else Fib(n-1) + Fib(n-2)
+}
+
 method Main(args: seq<string>) {
   print("Fibonacci sequence:\n");
-
-  var fib0 := 0;
-  var fib1 := 1;
-  var fib2 := 1;
-  var fib3 := 2;
-  var fib5 := 5;
-
   print("Fib(0) = ");
-  print(fib0);
+  print(Fib(0));
   print("\n");
-  assert fib0 == 0;
+  assert Fib(0) == 0;
 
   print("Fib(1) = ");
-  print(fib1);
+  print(Fib(1));
   print("\n");
-  assert fib1 == 1;
+  assert Fib(1) == 1;
 
   print("Fib(2) = ");
-  print(fib2);
+  print(Fib(2));
   print("\n");
-  assert fib2 == 1;
+  assert Fib(2) == 1;
 
   print("Fib(3) = ");
-  print(fib3);
+  print(Fib(3));
   print("\n");
-  assert fib3 == 2;
+  assert Fib(3) == 2;
+
+  print("Fib(4) = ");
+  print(Fib(4));
+  print("\n");
+  assert Fib(4) == 3;
 
   print("Fib(5) = ");
-  print(fib5);
+  print(Fib(5));
   print("\n");
-  assert fib5 == 5;
+  assert Fib(5) == 5;
 
   print("✓ All fibonacci values verified!\n");
 }

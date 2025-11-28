@@ -80,7 +80,6 @@ method Main(args: seq<string>) {
   }
   print("\n");
 
-  // Verify that the array is sorted
   assert IsSorted(arr);
   print("✓ Array is correctly sorted!\n");
 }
