@@ -1,5 +1,5 @@
-predicate IsSorted(a: seq<int>) {
-  forall i, j :: 0 <= i <= j < |a| ==> a[i] <= a[j]
+predicate IsSorted(arr: array<int>) {
+  forall i, j :: 0 <= i <= j < arr.Length ==> arr[i] <= arr[j]
 }
 
 method Partition(arr: array<int>, low: int, high: int) returns (pi: int)
@@ -30,18 +30,29 @@ method Partition(arr: array<int>, low: int, high: int) returns (pi: int)
   pi := i + 1;
 }
 
-method QuickSort(arr: array<int>, low: int, high: int)
+method QuickSortHelper(arr: array<int>, low: int, high: int)
   requires 0 <= low <= high + 1 <= arr.Length
   modifies arr
 {
   if low < high {
     var pi := Partition(arr, low, high);
-    QuickSort(arr, low, pi - 1);
-    QuickSort(arr, pi + 1, high);
+    QuickSortHelper(arr, low, pi - 1);
+    QuickSortHelper(arr, pi + 1, high);
+  }
+}
+
+method QuickSort(arr: array<int>)
+  modifies arr
+  ensures IsSorted(arr)
+{
+  if arr.Length > 0 {
+    QuickSortHelper(arr, 0, arr.Length - 1);
   }
 }
 
 method Main(args: seq<string>) {
+  print("QuickSort example:\n");
+
   var arr := new int[5];
   arr[0] := 64;
   arr[1] := 34;
@@ -57,7 +68,19 @@ method Main(args: seq<string>) {
     i := i + 1;
   }
   print("\n");
-  print("Max(12, 22) = ");
-  print(Max(12, 22));
+
+  QuickSort(arr);
+
+  print("Sorted array: ");
+  i := 0;
+  while i < arr.Length {
+    print(arr[i]);
+    print(" ");
+    i := i + 1;
+  }
   print("\n");
+
+  // Verify that the array is sorted
+  assert IsSorted(arr);
+  print("✓ Array is correctly sorted!\n");
 }

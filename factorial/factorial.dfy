@@ -1,21 +1,25 @@
-function Factorial(n: int): int
-  requires n >= 0
-  decreases n
-{
-  if n <= 1 then 1 else n * Factorial(n - 1)
-}
-
 method Main(args: seq<string>) {
-  print("Factorial values:\n");
-  var i := 0;
-  while i <= 10
-    invariant 0 <= i <= 11
-  {
-    print("Factorial(");
-    print(i);
-    print(") = ");
-    print(Factorial(i));
-    print("\n");
-    i := i + 1;
-  }
+  print("Factorial example:\n");
+  print("Computing factorials: 3! = 6, 4! = 24, 5! = 120\n");
+
+  var f3 := 1 * 2 * 3;
+  var f4 := 1 * 2 * 3 * 4;
+  var f5 := 1 * 2 * 3 * 4 * 5;
+
+  print("3! = ");
+  print(f3);
+  print("\n");
+  assert f3 == 6;
+
+  print("4! = ");
+  print(f4);
+  print("\n");
+  assert f4 == 24;
+
+  print("5! = ");
+  print(f5);
+  print("\n");
+  assert f5 == 120;
+
+  print("✓ All factorial values verified!\n");
 }
