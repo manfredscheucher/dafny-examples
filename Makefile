@@ -9,7 +9,7 @@ DAFNY_BIN := $(SCRIPT_DIR)/../Binaries/dafny
 # If Binaries/dafny doesn't exist, use dotnet run
 DAFNY_CMD := $(if $(shell [ -f "$(DAFNY_BIN)" ] && echo "exists"),$(DAFNY_BIN),dotnet run --project $(SCRIPT_DIR)/../Source/Dafny/Dafny.csproj --)
 
-EXAMPLES := hello abs maximum factorial fibonacci quicksort bubblesort
+EXAMPLES := hello abs maximum factorial fibonacci bubbleSort linkedListSearch
 
 help:
 	@echo "Dafny Examples Makefile"
